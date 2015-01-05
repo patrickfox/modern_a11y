@@ -1,0 +1,19 @@
+doctype
+<!--[if lt IE 7 ]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if IE 7 ]>         <html class="no-js lt-ie9 lt-ie8">       <![endif]-->
+<!--[if IE 8 ]>         <html class="no-js ie8 lt-ie9">          <![endif]-->
+<!--[if gt IE 8 ]><!--> <html class="no-js" lang="en">       <!--<![endif]-->
+
+head
+	block head
+	include head
+
+body(ng-app="modern_a11y")
+	include header
+
+
+	main(ng-view="", role="main")
+		block main
+
+	include footer
+	include scripts

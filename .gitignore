@@ -1,0 +1,7 @@
+.git
+.sass-cache
+bower_components
+build
+node_modules
+**/.DS_Store
+.bowerrc
