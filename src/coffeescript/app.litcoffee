@@ -15,6 +15,9 @@
 			).when("/faq",
 				templateUrl: "faq.html"
 				controller: "PageCtrl"
+			).when("/about",
+				templateUrl: "about.html"
+				controller: "PageCtrl"
 			).when("/services",
 				templateUrl: "services.html"
 				controller: "PageCtrl"

@@ -1,4 +1,4 @@
-//- ul
-//- each val in locals
-//- 	li
-//- 		a(href="#/blog/#{val}.html") #{val}
+nav(role="navigation" aria-labelledby="blog_posts")
+	h2#blog_posts Blog Posts
+	each val in locals
+		a(href="#/blog/#{val.filename}.html") #{val.title} (#{val.pubdate})

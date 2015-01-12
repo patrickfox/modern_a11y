@@ -15,12 +15,12 @@ var gulp = require('gulp'),
 	coffee = require('gulp-coffee'),
 	plumber = require('gulp-plumber'),
 	gutil = require('gulp-util'),
-	to_json = require('gulp-to-json'),
-	md2json = require('markdown-to-json'),
 	data = require('gulp-data'),
 	fm = require('front-matter'),
+	front_matter = require('gulp-front-matter'),
 	fs = require('fs'),
 	/* utility vars */
+	json_output = [],
 	is_production = false,
 	sass_style = 'expanded',
 	source_map = true,
@@ -66,19 +66,11 @@ gulp.task('libs', function() {
 });
 
 gulp.task('templates', function() {
-	var post_data = require('./posts.json');
 
 	return gulp.src('src/templates/*.jade')
 		.pipe(plumber(onError))
-		.pipe(jade({pretty: true, locals: post_data}))
+		.pipe(jade({pretty: true, locals: json_output}))
 		.pipe(gulp.dest('build/'))
-		.pipe(reload({stream:true}));
-});
-
-gulp.task('markdown', function () {
-	return gulp.src('src/posts/*.md')
-		.pipe(markdown())
-		.pipe(gulp.dest('build/posts/'))
 		.pipe(reload({stream:true}));
 });
 
@@ -114,29 +106,44 @@ gulp.task('sass', function () {
 		.pipe(reload({stream:true}));
 });
 
-var json_output = [];
-gulp.task('create_posts_data', function () {
-	gulp.src('./src/posts/**/*.md')
+gulp.task('markdown', function () {
+	return gulp.src('src/posts/*.md')
+		.pipe(front_matter({property:'front_matter', remove: true}))
 		.pipe(data(function(file) {
-			var content = fm(String(file.contents));
-			file.contents = new Buffer(content.body);
-			console.log(content.attributes);
-			json_output.push(content.attributes);
-			return content.attributes;
-		}));
+			json_output.push(file.front_matter);
+		}))
+		.pipe(markdown())
+		.pipe(gulp.dest('build/posts/'))
+		.pipe(reload({stream:true}))
+		.on('end', function () {
+			console.log('create_posts_data end!');
+			console.log(json_output);
+			//write_posts_json(json_output);
+		});
 });
 
-gulp.task('create_posts_json', function () {
-	console.log(json_output);
-	fs.writeFile('posts.json', JSON.stringify(json_output), function(err) {
-		if(err) {
-			console.log(err);
-		} else {
-			console.log("The file was saved!");
-		}
+
+gulp.task('create_posts_data', function () {
+	return gulp.src('./src/posts/**/*.md')
+		.pipe(front_matter({property:'front_matter', remove: true}))
+		.pipe(data(function(file) {
+			json_output.push(file.front_matter);
+		}))
+
+		.on('end', function () {
+			console.log('create_posts_data end!');
+			console.log(json_output);
+			//write_posts_json(json_output);
+		});
+});
+
+gulp.task('create_posts_json', write_posts_json);
+
+var write_posts_json = function () {
+	return fs.writeFile('posts.json', JSON.stringify(json_output), function(err) {
+		console.log(err? err : "The file was saved!");
 	});
-
-});
+};
 
 gulp.task('copy', function() {
 	gulp.src('src/img/**/*')
@@ -161,7 +168,7 @@ gulp.task('copy', function() {
 		.pipe(gulp.dest('build/css'));
 });
 
-gulp.task('_build',['css','sass','coffee','templates','markdown','vendor_js',/*'libs',*/'copy']); //Because 'clean' is async runSequence forces sync
+gulp.task('_build',['css','sass','coffee','templates','vendor_js',/*'libs',*/'copy']); //Because 'clean' is async runSequence forces sync
 
 gulp.task('browser-sync', function() {
 	browserSync({
@@ -175,7 +182,7 @@ gulp.task('browser-sync', function() {
 /* command line entry points */
 
 gulp.task('build', function(cb) {
-	runSequence('clean','create_posts_data','create_posts_json','_build',cb);
+	runSequence('clean','markdown','_build',cb);
 });
 
 gulp.task('run', function(cb){
