@@ -10,7 +10,7 @@
 				controller: "PageCtrl"
 			).when("/blog/:post_name",
 				templateUrl: (params)->
-					'/posts/' + params.post_name
+					'/articles/' + params.post_name
 				controller: "PageCtrl"
 			).when("/faq",
 				templateUrl: "faq.html"
@@ -33,6 +33,7 @@
 
 	]
 	app.controller "PageCtrl", ($scope, $location, $http) ->
+		console.log $location
 		$scope.$on '$viewContentLoaded',  announce_view_loaded
 		return
 
@@ -40,7 +41,6 @@
 
 	announce_view_loaded = ->
 		page_title = $('main [data-page-title]').data('page-title') or 'page title not set'
-		console.log 'view content loaded' + page_title
 		set_title(page_title)
 
 	set_title = (page_title) ->

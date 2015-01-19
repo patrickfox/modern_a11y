@@ -1,7 +1,30 @@
+body
+	background-color: $body_background_color
+	margin: 0
+	padding: 0
+	font-family: $body_font_stack
+	font-size: 14px
+	line-height: 1.4em
+	color: $body_font_color
+	font-weight: normal
+	-webkit-font-smoothing: antialiased
+	+diagonally-striped-background(rgba(0,35,94,.1))
+
+*
+	-moz-box-sizing: border-box
+	-webkit-box-sizing: border-box
+	box-sizing: border-box
+
 .vh
 	position: absolute
 	height: 1px
 	overflow: hidden
+
+.inner
+	max-width: 1280px
+	margin: 0 auto
+	padding: 0 20px 0 0
+
 
 
 
@@ -19,3 +42,45 @@
 	border-radius: 0 0 4px 4px
 	&:focus
 		top: 0
+
+header
+	background: url($header_background_image) repeat-x 0 0
+	height: 60px
+	border-bottom: solid $primary_dark_text_color 1px
+	box-shadow: 0 0 8px 3px rgba(0,35,94,0.4)
+	h1
+		font-size: 20px
+		padding: 12px 20px 0 0
+		margin: 0
+	a
+		padding: 5px 10px
+		text-decoration: none
+		font-weight: bold
+		text-shadow: rgba(0,0,0,.3) 0 1px 0
+		border: 1px solid rgba(0,0,0,0)
+		outline: none
+		&:hover, &:focus, &.active
+			color: #0046bc
+			border-radius: 3px
+			background-color: rgba(255,255,255,.6)
+			border: 1px solid rgba(0,70,188,.4)
+			box-shadow: rgba(255,255,255,0.15) 0 1px 0px, inset rgba(0,0,0,0.17) 0 1px 1px
+			text-shadow: none
+			outline: none
+
+	h1, a, nav
+		color: #fff
+		display: inline-block
+		vertical-align: middle
+	nav
+		padding: 14px 0 0
+
+h2
+	color: $primary_dark_text_color
+
+
+footer, main
+	padding: 20px 0 0
+
+
+

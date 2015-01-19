@@ -107,39 +107,22 @@ gulp.task('sass', function () {
 });
 
 gulp.task('markdown', function () {
-	return gulp.src('src/posts/*.md')
+	return gulp.src('src/articles/*.md')
 		.pipe(front_matter({property:'front_matter', remove: true}))
 		.pipe(data(function(file) {
 			json_output.push(file.front_matter);
 		}))
 		.pipe(markdown())
-		.pipe(gulp.dest('build/posts/'))
+		.pipe(gulp.dest('build/articles/'))
 		.pipe(reload({stream:true}))
 		.on('end', function () {
 			console.log('create_posts_data end!');
 			console.log(json_output);
-			//write_posts_json(json_output);
+			//output_json(json_output); //not working for some reason
 		});
 });
 
-
-gulp.task('create_posts_data', function () {
-	return gulp.src('./src/posts/**/*.md')
-		.pipe(front_matter({property:'front_matter', remove: true}))
-		.pipe(data(function(file) {
-			json_output.push(file.front_matter);
-		}))
-
-		.on('end', function () {
-			console.log('create_posts_data end!');
-			console.log(json_output);
-			//write_posts_json(json_output);
-		});
-});
-
-gulp.task('create_posts_json', write_posts_json);
-
-var write_posts_json = function () {
+var output_json = function () {
 	return fs.writeFile('posts.json', JSON.stringify(json_output), function(err) {
 		console.log(err? err : "The file was saved!");
 	});
