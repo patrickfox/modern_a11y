@@ -28,7 +28,7 @@
 				templateUrl: "blog_item.html"
 				controller: "PageCtrl"
 			).otherwise "/404",
-				templateUrl: "404.html"
+				templateUrl: "home.html"
 				controller: "PageCtrl"
 
 	]
@@ -40,6 +40,7 @@
 	site_title = 'Modern Accessibility - '
 
 	announce_view_loaded = ->
+		#return
 		page_title = $('main [data-page-title]').data('page-title') or 'page title not set'
 		set_title(page_title)
 

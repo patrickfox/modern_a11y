@@ -1,4 +1,5 @@
 nav(role="navigation" aria-labelledby="blog_posts")
 	h2#blog_posts Blog Posts
-	each val in locals
-		a(href="#/blog/#{val.filename}.html") #{val.title} (#{val.pubdate})
+	.articles
+		each val in locals
+			a(href="#/blog/#{val.filename}.html") #{val.title}

@@ -4,7 +4,7 @@ filename: second-post
 pubdate: 20150104 
 ---
 
-##Second Blog Post
+<h2 data-page-title="Second Blog Post">Second Blog Post</h2>
 
 This is the second Modern A11y blog post!
 

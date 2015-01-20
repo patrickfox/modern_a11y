@@ -4,7 +4,7 @@ filename: first-post
 pubdate: 20150103 
 ---
 
-##First Blog Post
+<h2 data-page-title="First Blog Post">First Blog Post</h2>
 
 This is the first Modern A11y blog post!
 

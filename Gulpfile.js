@@ -30,7 +30,7 @@ var gulp = require('gulp'),
 			'bower_components/angular/angular.js',
 			'bower_components/angular-route/angular-route.js',
 			'bower_components/jquery/dist/jquery.js',
-			'bower_components/a11y_kit/dist/a11y_kit.js'
+			'bower_components/a11y_kit/dist/a11y_kit.jquery.js'
 		],
 		/* register custom literate coffeescript files */
 		'litcoffee':[
