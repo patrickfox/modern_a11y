@@ -33,7 +33,7 @@
 
 	]
 	app.controller "PageCtrl", ($scope, $location, $http) ->
-		console.log $location
+		#return
 		$scope.$on '$viewContentLoaded',  announce_view_loaded
 		return
 
