@@ -87,7 +87,7 @@ gulp.task('vendor_js', function () {
 });
 
 gulp.task('coffee', function () {
-	return gulp.src(paths.litcoffee)
+	return gulp.src('./src/coffeescript/*.litcoffee')
 		.pipe(plumber(onError))
 		.pipe(coffee())
 		.pipe(concat('app.js'))

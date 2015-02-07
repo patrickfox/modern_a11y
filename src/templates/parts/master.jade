@@ -9,10 +9,12 @@ head
 	include head
 
 body(ng-app="modern_a11y")
-	include header
-	main#main_content(role="main")
-		.inner(ng-view="")
-			block main
+	.shell(data-isolate)
+		include header
+		main#main_content(role="main")
+			.inner(ng-view="")
+				block main
 
-	include footer
+		include footer
 	include scripts
+	include modals
