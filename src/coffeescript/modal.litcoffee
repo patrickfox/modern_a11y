@@ -10,27 +10,32 @@ Each modal has the following:
 
 		Modal_Manager =
 			overlay: null
+			modal_active: false
 			open_button: '[data-opens-modal]'
 			close_button: '[data-closes-modal]'
 			init: ()->
 				_self = @
+				update_position = ->
+					_self.position()
 				@.content_shell = $('[data-isolate]')
 				unless @.overlay
-					@.overlay = $('<div id="modal_overlay"></div>').appendTo('body')
-				$('body').on('click.modal_open', @.open_button, $.proxy(@.handle_click_open, _self))
-				$('body').on('click.modal_close', @.close_button, $.proxy(@.handle_click_close, _self))
+					@.overlay = $('<div class="hidden" id="modal_overlay"></div>').appendTo('body')
+				$('body').on('click.modal_open', _self.open_button, $.proxy(@.handle_click_open, _self))
+				$('body').on('click.modal_close', _self.close_button, $.proxy(@.handle_click_close, _self))
 				$('body').on('keyup.modal_close', $.proxy(@.handle_keypress, _self))
+				$.subscribe($.events.window_resize, update_position)
 				return
 
 			handle_click_open: (e)->
-				console.log('handle_click_open')
+				return if @.modal_active
+				@.modal_active = true
 				@.modal_id = $(e.target).data('opens-modal')
 				@.shell = $('[data-modal-id="' + @.modal_id + '"]')
 				@.open()
 				return
 
 			handle_click_close: (e)->
-				console.log('handle_click_close')
+				return if !@.modal_active
 				if $(e.target).is('[data-closes-modal]')
 					@.close()
 				return
@@ -38,15 +43,15 @@ Each modal has the following:
 			handle_keypress: (e)->
 				key = e.keyCode
 				if key is 27
-					return if @.modal_active is false
+					return if !@.modal_active
 					@.close()
 				return
 
 			open: ->
 				@.isolate()
 				@.label_shell()
-				@.shell.show()
-				@.overlay.show()
+				@.shell.removeClass('hidden')
+				@.overlay.removeClass('hidden')
 				@.shell.access()
 				@.position()
 				return
@@ -54,17 +59,27 @@ Each modal has the following:
 			close: ->
 				_self = @
 				lastly = ->
+					_self.modal_active = false
 					$('[data-opens-modal="' + _self.modal_id + '"]').focus()
+					@.shell = null
 				@.isolate(true)
-				@.shell.hide()
-				@.overlay.hide()
+				@.shell.addClass('hidden')
+				@.overlay.addClass('hidden')
 				setTimeout(lastly, 0)
 				return
 
 			position: ->
+				return if not @.shell?
+				@.shell.addClass('testing')
 				width = @.shell.width()
+				height = @.shell.height()
 				window_width = $(window).width()
-				@.shell.css({'left': ((window_width - width)/2) + 'px'})
+				window_height = $(window).height()
+				@.shell.removeClass('testing')
+				pos = {}
+				pos.left = ((window_width - width)/2) + 'px'
+				pos.top = ((window_height - height)/2) + 'px'
+				@.shell.css(pos)
 
 			label_shell: ->
 				unless @.shell.is('[aria-labelledby]')

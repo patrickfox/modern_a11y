@@ -35,13 +35,21 @@
 	app.controller "PageCtrl", ($scope, $location, $http) ->
 		#return
 		$scope.$on '$viewContentLoaded',  announce_view_loaded
+		$scope.$on '$viewContentLoaded',  init_components
 		return
 
 	site_title = 'Modern Accessibility - '
+	
+	init_components = ->
+		window.carousel_mgr.init()
 
 	announce_view_loaded = ->
 		#return
-		page_title = $('main [data-page-title]').data('page-title') or 'page title not set'
+		page_title_el = $('main [data-page-title]')
+		if page_title_el?
+			page_title = page_title_el.data('page-title') || page_title_el.html()
+		else 
+			page_title 'page title not set'
 		set_title(page_title)
 
 	set_title = (page_title) ->

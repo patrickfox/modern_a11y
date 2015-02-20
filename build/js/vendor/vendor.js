@@ -36291,7 +36291,7 @@ return jQuery;
 
 }));
 
-(function() {
+  (function() {
   var announce_timeout, focusable, visible;
 
   $.fn.access = function(place_focus_before) {

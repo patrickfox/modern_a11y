@@ -1,0 +1,38 @@
+.carousel
+	position: relative
+	display: inline-block
+	width: 300px
+	overflow: hidden
+	height: 175px
+	a 
+		display: inline-block
+		float: left
+		width: 300px
+		color: #333
+		padding: 20px
+		border: 1px solid #ccc
+		height: 175px
+		text-decoration: none
+		text-align: center
+		font-size: 13px
+		box-sizing: border-box
+	a:hover, a:focus 
+		background-color: #999
+		color: #fff
+	a h2 
+		font-size: 14px
+		text-transform: uppercase
+	.carousel_container 
+		position: absolute
+		top: 0
+		left: 0
+		width: 300px
+	.hidden 
+		display: none
+	.arrows button 
+		position: absolute
+		top: 90px
+	.arrows button[data-type=previous] 
+		left: 0
+	.arrows button[data-type=next] 
+		right: 0

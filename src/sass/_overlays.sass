@@ -1,8 +1,8 @@
 .modal
-	display: none
+	position: fixed
+.tooltip
 	position: absolute
-	top: 50%
-	left: 50%
+.modal, .tooltip
 	background-color: #fff
 	border: 1px solid #aaa
 	border-radius: 4px
@@ -14,11 +14,11 @@
 		margin: 0
 
 #modal_overlay
-	display: none
 	background-color: rgba(0,0,0,.3)
-	position: absolute
 	top: 0
 	bottom: 0
 	left: 0
 	right: 0
 	width: 100%
+	position: fixed
+

@@ -34,7 +34,11 @@ var gulp = require('gulp'),
 		],
 		/* register custom literate coffeescript files */
 		'litcoffee':[
-			'src/coffeescript/app.litcoffee'
+			'src/coffeescript/app.litcoffee',
+			'src/coffeescript/modal.litcoffee',
+			'src/coffeescript/carousel.litcoffee',
+			'src/coffeescript/tooltip.litcoffee',
+			'src/coffeescript/helpers.litcoffee'
 		]
 	};
 
@@ -87,7 +91,7 @@ gulp.task('vendor_js', function () {
 });
 
 gulp.task('coffee', function () {
-	return gulp.src('./src/coffeescript/*.litcoffee')
+	return gulp.src(paths.litcoffee)
 		.pipe(plumber(onError))
 		.pipe(coffee())
 		.pipe(concat('app.js'))
@@ -114,12 +118,7 @@ gulp.task('markdown', function () {
 		}))
 		.pipe(markdown())
 		.pipe(gulp.dest('build/articles/'))
-		.pipe(reload({stream:true}))
-		.on('end', function () {
-			console.log('create_posts_data end!');
-			console.log(json_output);
-			//output_json(json_output); //not working for some reason
-		});
+		.pipe(reload({stream:true}));
 });
 
 var output_json = function () {
