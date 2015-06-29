@@ -36,8 +36,10 @@ var gulp = require('gulp'),
 		'litcoffee':[
 			'src/coffeescript/app.litcoffee',
 			'src/coffeescript/modal.litcoffee',
-			'src/coffeescript/carousel.litcoffee',
+			// 'src/coffeescript/carousel.litcoffee',
 			'src/coffeescript/tooltip.litcoffee',
+			'src/coffeescript/dropdown.litcoffee',
+			// 'src/coffeescript/accordion.litcoffee',
 			'src/coffeescript/helpers.litcoffee'
 		]
 	};
@@ -76,10 +78,6 @@ gulp.task('templates', function() {
 		.pipe(jade({pretty: true, locals: json_output}))
 		.pipe(gulp.dest('build/'))
 		.pipe(reload({stream:true}));
-});
-
-gulp.task('css', function() {
-
 });
 
 gulp.task('vendor_js', function () {
@@ -150,7 +148,7 @@ gulp.task('copy', function() {
 		.pipe(gulp.dest('build/css'));
 });
 
-gulp.task('_build',['css','sass','coffee','templates','vendor_js',/*'libs',*/'copy']); //Because 'clean' is async runSequence forces sync
+gulp.task('_build',['sass','coffee','templates','vendor_js',/*'libs',*/'copy']); //Because 'clean' is async runSequence forces sync
 
 gulp.task('browser-sync', function() {
 	browserSync({

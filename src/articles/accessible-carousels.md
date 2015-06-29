@@ -1,7 +1,8 @@
 ---
 title: Accessible Carousels
 filename: accessible-carousels
-pubdate: 20150104 
+pubdate: 20150104
+draft: true
 ---
 
 <h2 data-page-title="Accessible Carousels">Accessible Carousels</h2>

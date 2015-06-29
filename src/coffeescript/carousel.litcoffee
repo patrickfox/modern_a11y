@@ -5,32 +5,29 @@ Each carousel has the following:
 
 ##Accessibility features
 	
-
-	Carousel_Manager =
-		carousels: {}
-		init: ->
-			carousels = $('[data-carousel]')
-			carousels.each( ()->
-				container = $(this)
-				return if container.data('carousel')
-				carousel = Object.create(Carousel)
-				carousel.init(container)
-			)
-	
 	Carousel =
 		init: (container)->
 			_self = @
+			@.current_item = 0
 			@.container = container
 			@.items = @.container.find('a')
 			@.item_width = @.items.eq(0).width()
 			@.arrows = @.container.find('button')
 			id = 'carousel_' + new Date().getTime()
-			carousel_mgr.carousels[id] = _self
 			@.container.data('carousel', id)
 			@.arrows.on('click', $.proxy(_self.onclick_carousel_arrow, _self))
+			return @
+		
 		onclick_carousel_arrow: (e)->
 			direction = $(e.target).data('type')
+			@.update_carousel(direction is 'right'? 1 : -1)
 
-	$( ->
-		window.carousel_mgr = Carousel_Manager
-	)
+
+		update_carousel: (value)->
+			return
+
+	$.fn.Carousel
+		unless $(@).data('carousel')
+			carousel = Object.create(Carousel)
+			$(@).data('carousel') = carousel.init()
+		@

@@ -1,6 +1,11 @@
-nav(role="navigation" aria-labelledby="blog_posts")
-	h2#blog_posts Blog Posts
-	.articles
-		each val in locals
-			a(href="#/blog/#{val.filename}.html") #{val.title}
+include mixins
+.articles
+	each val in locals
+		unless val.draft
+			article
+				+pubdate(val.pubdate)
+				a.title(href="#/blog/#{val.filename}.html") #{val.title}
+				span.author.pfox by Patrick Fox
+				.summary This is a summary of the article/post.
+				a.readmore(href="#/blog/#" aria-label="Read full post for #{val.title}") Read More
 

@@ -22,3 +22,48 @@
 	width: 100%
 	position: fixed
 
+.dropdownmenu
+	button 
+		background-color: #fff
+		border: 1px solid #333
+		border-radius: 0
+		padding: 20px 10px
+	[data-drop-down-button]
+		border-radius: 4px
+		width: 300px
+	[data-drop-down-button][aria-expanded="true"]
+		background-color: #333
+		color: #fff
+	[data-drop-down-item].active
+		background-color: #ccc
+	[data-drop-down-item]
+		clear: both
+		display: block
+		width: 100%
+		border-top-width: 0
+	[data-drop-down-menu]
+		opacity: 0
+		transition: opacity 1s
+		display: none
+		width: 290px
+		margin: 0 0 0 5px
+	[data-drop-down-menu][aria-hidden="false"]
+		display: block
+		opacity: 1
+
+.dropdown-select
+	margin: 2em 0 0 0
+	font-size: 3em
+
+
+.accordion
+	button
+		background-color: #fff
+		border: 1px solid #333
+		border-radius: 0
+		padding: 20px 10px
+
+	[data-content][aria-hidden="true"]
+		diplay: none
+
+

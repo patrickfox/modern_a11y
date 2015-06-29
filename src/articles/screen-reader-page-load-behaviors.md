@@ -1,7 +1,7 @@
 ---
 title: Screen Reader Page Load Behaviors
 filename: screen-reader-page-load-behaviors
-pubdate: 20150103 
+pubdate: 20150103
 ---
 
 <h2 data-page-title="Screen Reader Page Load Behaviors">Screen Reader Page Load Behaviors</h2>

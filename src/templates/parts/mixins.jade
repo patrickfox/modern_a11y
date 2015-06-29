@@ -1,0 +1,7 @@
+mixin pubdate(val)
+	-var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+	-var month = parseInt(val.toString().substr(4,2));
+	time 
+		.month #{months[month]}
+		.day #{val.toString().substr(2,2)}
+		.year #{val.toString().substr(0,4)}

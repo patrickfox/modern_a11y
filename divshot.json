@@ -1,0 +1,6 @@
+{
+  "name": "modern-a11y",
+  "root": "build",
+  "clean_urls": true,
+  "error_page": "error.html"
+}

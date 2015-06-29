@@ -7,37 +7,40 @@ pubdate: 20150131
 <h2 data-page-title="Accessible Modals">Accessible Modals</h2>
 
 
-Building accessible modals is easy. A few things to keep in mi
+Building accessible modals is easy. A few things to keep in mind:
 
 
-###What is a modal?
-
-For clarification, a modal is a UI component that temporarily interrupts the page context by obscuring the default UI/view and displaying a pertinent message that requires the user's attention,  and , optionally, to select an option.
-
-Modals can be shown on user interaction or programatically.
+###Add role=dialog to modal
+Outer modal container must have a ```role="dialog"```. When focus is placed on or inside the modal, screen readers will announce a "dialog".
 
 
-###Why use a modal???
-
-Modals are an effective way to inform and/or prompt the user while keeping them in the main experience.
-
+###Use H1 as the first heading
+Since the modal is the only active item in the page, use headings starting at H1 to indicate to the user that this is the highest level heading.
 
 
-### Types of modals
+###Use aria-labelledby to label the modal
+Provide context for the prupose of the modal by using aria-labelledby to assocaite the modal with a heading or other content that speaks to its purpose.
 
-####Informative
-Informative modals inform the user of pertinent information.
-
-####Decisive
-Decisive modals ask the user to interact with the prompt by choosing an option or providing information via a form field.
+###Isolate the modal from the rest of the UI
+This technique relies on aria-hidden="true" to hide the main page content, and a focus listener that returns focus to the modal if the page receives focus.
 
 
-###Default modal behaviors
+###Place focus on first focusable element
+The first focusable element inside the modal should receive focus.
 
-Escape to close
+
+###Listen for escape key to close modal
 Ability to close modal via the Escape key on informative modals. _Note: If a modal requires user input to proceed, the Escape key behavior should be disabled._
 
 
 ###Modal Example
 <button data-opens-modal="test_modal" type="button">Open Modal</button>
-<button data-opens-tooltip="test_tooltip" type="button" aria-labelledby="test_tooltip" role="tooltip">Open Tooltip</button>
+
+
+
+
+
+
+
+
+

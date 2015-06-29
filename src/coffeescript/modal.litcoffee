@@ -90,6 +90,7 @@ Each modal has the following:
 						id = 'modal_label_' + $.get_guid()
 						label.attr('id', id)
 						label_ids.push(id)
+						label.removeAttr('data-modal-label')
 					@shell.attr('aria-labelledby', label_ids.join(' '))
 				return
 
@@ -101,7 +102,7 @@ The isolate method manages
 				_self = @
 				handle_focusin_body = (e) ->
 					unless !!$(e.target).parents('[data-modal-id]').length
-						_self.shell.find(':focusable').focus()
+						_self.shell.find(':focusable:first').focus()
 					return
 				if close
 					@.content_shell.removeAttr('aria-hidden')

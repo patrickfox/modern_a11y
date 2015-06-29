@@ -4,6 +4,7 @@
 <!--[if gt IE 8 ]><!--> <html class="no-js" lang="en">       <!--<![endif]-->
 <head>
   <title>Modern A11y - Home</title>
+  <link rel="stylesheet" href="fonts/ssp/stylesheet.css">
   <link rel="stylesheet" href="css/main.css">
 </head>
 <body ng-app="modern_a11y">
@@ -12,7 +13,7 @@
       <div class="inner"><a id="skip2content" href="#main_content">Skip to main content</a>
         <div id="a11y_announcer" aria-live="polite" class="vh"></div>
         <h1>Modern A11y</h1>
-        <nav role="navigation"><a href="#/">Home</a><a href="#/blog">Blog</a><a href="#/contact">Contact</a><a href="#/about">About	</a></nav>
+        <nav role="navigation" aria-label="Site Nav"><a href="#/">Home</a><a href="#/blog">Blog</a><a href="#/contact">Contact</a><a href="#/about">About	</a></nav>
       </div>
     </header>
     <main id="main_content" role="main">
@@ -21,7 +22,7 @@
     </main>
     <footer role="contentinfo">
       <div class="inner">
-        <p>This is the footer</p>
+        <!--p This is the footer-->
       </div>
     </footer>
   </div>

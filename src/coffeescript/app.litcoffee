@@ -30,18 +30,14 @@
 			).otherwise "/404",
 				templateUrl: "home.html"
 				controller: "PageCtrl"
-
 	]
+
 	app.controller "PageCtrl", ($scope, $location, $http) ->
-		#return
-		$scope.$on '$viewContentLoaded',  announce_view_loaded
-		$scope.$on '$viewContentLoaded',  init_components
+		$scope.$on '$viewContentLoaded', announce_view_loaded
+		$scope.$on '$viewContentLoaded', init_components
 		return
 
 	site_title = 'Modern Accessibility - '
-	
-	init_components = ->
-		window.carousel_mgr.init()
 
 	announce_view_loaded = ->
 		#return
@@ -50,10 +46,19 @@
 			page_title = page_title_el.data('page-title') || page_title_el.html()
 		else 
 			page_title 'page title not set'
-		set_title(page_title)
+		set_title_and_announce_page_load(page_title)
 
-	set_title = (page_title) ->
+	init_components = ->
+		$('[data-drop-down]').each ->
+			container = $(@)
+			unless container.data('drop-down')
+				container.dropdown()
+
+	set_title_and_announce_page_load = (page_title) ->
 		page_title = site_title + page_title
 		$('title').html(page_title)
+		$('#main_content').access(true)
 		$.announce(page_title + ' page loaded', 'assertive')
 		return
+
+

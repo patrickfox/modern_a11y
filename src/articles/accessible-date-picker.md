@@ -1,10 +1,11 @@
 ---
-title: Fourth Blog Post
-filename: fourth-post
-pubdate: 20150104 
+title: Date Picker Example
+filename: acessible-date-picker
+pubdate: 20150104
+draft: true
 ---
 
-<h2 data-page-title="Fourth Blog Post">Fourth Blog Post</h2>
+<h2 data-page-title="Date Picker Example">Date Picker Example</h2>
 
-This is the fourth Modern A11y blog post!
+[TODO] Date Picker Example
 
