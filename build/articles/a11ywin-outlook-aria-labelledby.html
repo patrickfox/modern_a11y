@@ -126,7 +126,6 @@
 <p>Each of the 14 ID&#39;s listed above corresponds to a unique DOM element, whose purpose is solely to hold content for use by <code>aria-labelledby</code>. None of these elements are used for the visually displayed content  - all referenced elements are <code>display:none;</code>.  This specific implementation adds hundreds of elements to the page, bloating the DOM and causing potentially significant performance issues. Minimizing the number of DOM nodes is a fundamental web performance optimization best practice.</p>
 <p>From my personal accessibility rule book:</p>
 <blockquote>
-<h5 id="__accessibility-implementation-tenet-4-__"><strong>Accessibility Implementation Tenet #4:</strong></h5>
 <p>Do not compromise code performance, simplicity and maintainability to achieve accessibility.</p>
 </blockquote>
 <h4 id="a-better-approach-aria-label">A Better Approach: Aria-Label</h4>
@@ -134,7 +133,7 @@
 <p>Example:</p>
 <pre><code>&lt;button aria-label=&quot;Conversation Collapsed, Draft in conversation, From Patrick Fox, To Patrick Fox, Flagged item Active, Subject Breakfast Tacos in the kitchen, Last message 9:43p. Replied, Get &#39;em while they&#39;re hot!&quot; ...&gt;...&lt;/button&gt;
 </code></pre><p><img src="https://lh3.googleusercontent.com/-su2vJUNNDd4/VW4Miqz-rdI/AAAAAAAACuI/2nZGsrX-eg0/s0/owa-email-spoken.png" alt="VoiceOver console showing the spoken summary:  Conversation Collapsed, Draft in conversation, From Patrick Fox, To Patrick Fox, Flagged item Active, Subject Breakfast Tacos in the kitchen, Last message 9:43p. Replied, Get &#39;em while they&#39;re hot!"></p>
-<p>Using <code>aria-label</code> allows us to forgo the </p>
+<p>Using <code>aria-label</code> allows us to forgo the creation and management of hundreds of unique ID&#39;s and hidden content and provides a far simpler solution that accomplishes thex same goal.</p>
 <h3 id="summary">Summary</h3>
 <p><code>aria-labelledby</code> provides a powerful means to associate multiple pieces of visible content with another UI element. In this way, <code>aria-labelledby</code> enable other UI elements to speak for the labelled element.</p>
 <blockquote>

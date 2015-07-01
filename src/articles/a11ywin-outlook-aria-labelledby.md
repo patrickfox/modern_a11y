@@ -95,7 +95,6 @@ Each of the 14 ID's listed above corresponds to a unique DOM element, whose purp
 
 From my personal accessibility rule book:
 
-> #####__Accessibility Implementation Tenet #4:__
 > Do not compromise code performance, simplicity and maintainability to achieve accessibility.
 
 
@@ -109,7 +108,7 @@ Example:
 
 ![VoiceOver console showing the spoken summary:  Conversation Collapsed, Draft in conversation, From Patrick Fox, To Patrick Fox, Flagged item Active, Subject Breakfast Tacos in the kitchen, Last message 9:43p. Replied, Get 'em while they're hot!](https://lh3.googleusercontent.com/-su2vJUNNDd4/VW4Miqz-rdI/AAAAAAAACuI/2nZGsrX-eg0/s0/owa-email-spoken.png)
 
-Using `aria-label` allows us to forgo the 
+Using `aria-label` allows us to forgo the creation and management of hundreds of unique ID's and hidden content and provides a far simpler solution that accomplishes thex same goal.
 
 
 
