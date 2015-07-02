@@ -1,7 +1,8 @@
 ---
 title: HTML5 Sectioning Elements
 filename: html5-sectioning-elements
-pubdate: 20150131 
+pubdate: 20150131
+draft: true
 ---
 
 <h2 data-page-title>HTML5 Sectioning Elements</h2>

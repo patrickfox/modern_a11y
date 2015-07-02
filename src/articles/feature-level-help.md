@@ -2,7 +2,6 @@
 title: Second Blog Post
 filename: second-post
 pubdate: 20150104
-
 draft: true
 ---
 
