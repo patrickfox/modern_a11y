@@ -2,6 +2,7 @@
 title: Accessible Tooltips
 filename: accessible-tooltips
 pubdate: 201503012
+author: 'Patrick Fox'
 draft: true
 ---
 

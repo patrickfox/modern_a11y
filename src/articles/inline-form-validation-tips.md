@@ -2,6 +2,7 @@
 title: First Blog Post
 filename: first-post
 pubdate: 20150103
+author: 'Patrick Fox'
 draft: true
 ---
 

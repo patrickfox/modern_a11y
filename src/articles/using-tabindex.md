@@ -1,7 +1,9 @@
 ---
 title: Using Tabindex
 filename: using-tabindex
+author: 'Patrick Fox'
 pubdate: 20150702
+summary: 'An important aspect of web accessibility is ensuring keyboard navigation and managing the users focus in a page. The tabindex attribute gives developers the ability to make any element focusable.'
 ---
 
 ## Using Tabindex
@@ -21,9 +23,43 @@ An important aspect of web accessibility is ensuring keyboard navigation and man
 | Curate a specific tab order | tabindex="{1 or greater}" | __Not recommended__ _Maintaining a logical, non-natural tab order in this manner is dificult, error prone, and an anti-pattern. Don't do this!_ How it works: lower, positive tabindex values receive focus before higher values. After this, any elements with either a tabindex of 0 or that are natively focusable with no tabindex are focusable in the order they appear in the DOM. Elements with the same tabindex will have a tab order based on their DOM order.
 
 
+Tabindex gives developers a lot of flexibility and control over what is and isn't focusable, and how those elements can be focused. Unchecked or ad hoc use of tabindex can cause issues, though, so great care should be taken with its use.
+
+
+### VoiceOver Extra Text Issue
+
+One issue in VoiceOver illustrates how the use of tabindex can lead to unintended issues. 
+
+Using tabindex="0" on container elements that contain natively focusable child elements causes all of the text in the container to be read vs. just the link text.
+
+An example:
+
+```html
+<div tabindex="0">
+	<h3>Section Heading</h3>
+	<p>Some text describing the purpose of this section.</a>
+	<a href="#">Read more about this on some other page</a>
+</div>
+```
+
+In VoiceOver (VO), interacting with the anchor above will 1) read the anchor text and 2) read __all__ of the content inside the `div(tabindex=0)`. 
+
+Expected VO output:
+
+> Read more about this on some other page link
+
+
+Actual VO output:
+
+> Read more about this on some other page Section Heading Some text describing the purpose of this section. link
+
+<a href="http://jsfiddle.net/pfox/ujf6j93c/" target="fiddle">See this JSFiddle for a working example</a>
 
 
 ### General Rules
+
+Some best practices to keep in mind:
+
 
 - DO NOT use tab index on elements that are not meant to be actionable  - e.g. a heading or div with tabindex
 - DO use natively focusable elements (buttons, links) instead of using less semantic elements w/tabindex
@@ -40,7 +76,7 @@ A great example of overdoing it can be found on AmericanExpress.com. If you have
 When an focusable element receives focus, a screen reader will read its contents aloud. The developers intentions are good(albeit misinformed), as they are attempting to improve the keyboard accessibility of the page by making important copy(heaings, paragraphs, summaries) focusable.
 
 
-![A screen shot of the American Express web site showing 154 instances of tabidex in the DOM](/img/amex.jpg)
+![A screen shot of the American Express web site showing 154 instances of tabindex in the DOM](/img/amex.jpg)
 
 
 A few problems with this approach:

@@ -2,13 +2,15 @@
 title: Outlook Accessibility and aria-labelledby
 filename: a11ywin-outlook-aria-labelledby
 pubdate: 20150614
+author: 'Patrick Fox'
+summary: 'The Outlook Web App is a great example of a highly usable and accessible web experience, and an #a11ywin'
 ---
 
-##Outlook Accessibility and aria-labelledby
+<h2 data-page-title>Outlook Accessibility and aria-labelledby</h2>
 
-The Outlook Web App is a great example of a highly usable and accessible web experience, and an __#a11ywin__.
+<span class="summary">The Outlook Web App is a great example of a highly usable and accessible web experience, and an __#a11ywin__.</span>
 
-Email inboxes are most likely familiar to all of us: scads of information, mostly junk or outdated information. Summarizing the information in an individual email is a considerable task alone. The information contained in a single email or email thread comprises contain dozens of pieces of information:
+Email inboxes are surely familiar to all of us: scads of information, some of it important, most of it junk or outdated information. Aside from the sheer number of email in an inbox(mine currently has over 2000), summarizing and presenting the information contained in an individual email is a formidable task alone. The information contained in a single email or email thread comprises about a dozen data points:
 - sender
 - recipient(s)
 - subject
@@ -20,7 +22,7 @@ Email inboxes are most likely familiar to all of us: scads of information, mostl
 - read/unread indicator
 - draft indicator
 
-Navigating through and understanding all of this information is cumbersome and presents a significant usability challenge for users of any ability.
+Navigating through and understanding all of this information is potentially cumbersome and presents a significant usability challenge for users of any ability.
 
 
 ###Visual vs. Spoken Summary
@@ -91,7 +93,7 @@ Accessibility inevitably adds some amount of complexity to the UI, but great car
 
 ####Unnecessary Complexity?
 
-Each of the 14 ID's listed above corresponds to a unique DOM element, whose purpose is solely to hold content for use by `aria-labelledby`. None of these elements are used for the visually displayed content  - all referenced elements are `display:none;`.  This specific implementation adds hundreds of elements to the page, bloating the DOM and causing potentially significant performance issues. Minimizing the number of DOM nodes is a fundamental web performance optimization best practice.
+Each of the 14 ID's listed above corresponds to a unique DOM element, whose purpose is solely to hold content for use by `aria-labelledby`. None of these elements are used for the visually displayed content  - all referenced elements are `display:none;`. This specific implementation adds hundreds of elements to the page and requires the creation of hundreds of unique ID's. Both of these add up to code bloat(and potential performance issues) and overly complex and inefficeint code. Minimizing the number of DOM nodes is a core web performance optimization best practice.
 
 From my personal accessibility rule book:
 
@@ -108,13 +110,13 @@ Example:
 
 ![VoiceOver console showing the spoken summary:  Conversation Collapsed, Draft in conversation, From Patrick Fox, To Patrick Fox, Flagged item Active, Subject Breakfast Tacos in the kitchen, Last message 9:43p. Replied, Get 'em while they're hot!](https://lh3.googleusercontent.com/-su2vJUNNDd4/VW4Miqz-rdI/AAAAAAAACuI/2nZGsrX-eg0/s0/owa-email-spoken.png)
 
-Using `aria-label` allows us to forgo the creation and management of hundreds of unique ID's and hidden content and provides a far simpler solution that accomplishes thex same goal.
+For this scenario, using `aria-label` vs. `aria-labelledby` provides a far simpler approach but accomplishes the same goal.
 
 
 
 ###Summary
 
-`aria-labelledby` provides a powerful means to associate multiple pieces of visible content with another UI element. In this way, `aria-labelledby` enable other UI elements to speak for the labelled element.
+`aria-labelledby` provides a powerful means to associate multiple pieces of visible content with another UI element. In this way, `aria-labelledby` enables other UI elements to speak for the labelled element.
 
 > ####__Aria-Labelledby Best Practices__
 > - Rely on a foundation of solid content and copy 

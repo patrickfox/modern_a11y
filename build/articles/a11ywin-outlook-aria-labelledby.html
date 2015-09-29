@@ -1,6 +1,7 @@
-<h2 id="outlook-accessibility-and-aria-labelledby">Outlook Accessibility and aria-labelledby</h2>
-<p>The Outlook Web App is a great example of a highly usable and accessible web experience, and an <strong>#a11ywin</strong>.</p>
-<p>Email inboxes are most likely familiar to all of us: scads of information, mostly junk or outdated information. Summarizing the information in an individual email is a considerable task alone. The information contained in a single email or email thread comprises contain dozens of pieces of information:</p>
+<h2 data-page-title>Outlook Accessibility and aria-labelledby</h2>
+
+<p><span class="summary">The Outlook Web App is a great example of a highly usable and accessible web experience, and an <strong>#a11ywin</strong>.</span></p>
+<p>Email inboxes are surely familiar to all of us: scads of information, some of it important, most of it junk or outdated information. Aside from the sheer number of email in an inbox(mine currently has over 2000), summarizing and presenting the information contained in an individual email is a formidable task alone. The information contained in a single email or email thread comprises about a dozen data points:</p>
 <ul>
 <li>sender</li>
 <li>recipient(s)</li>
@@ -13,7 +14,7 @@
 <li>read/unread indicator</li>
 <li>draft indicator</li>
 </ul>
-<p>Navigating through and understanding all of this information is cumbersome and presents a significant usability challenge for users of any ability.</p>
+<p>Navigating through and understanding all of this information is potentially cumbersome and presents a significant usability challenge for users of any ability.</p>
 <h3 id="visual-vs-spoken-summary">Visual vs. Spoken Summary</h3>
 <p>Visually, all of the pertinent information is represented in a convenient, efficient manner that allows for quick understanding of each email and email thread&#39;s purpose.</p>
 <p><img src="https://lh3.googleusercontent.com/-48J2SEjvw_8/VW2_CF-YxzI/AAAAAAAACts/U-5IgDe9-x4/s0/owa-email-inbox.png" alt="Outlook Inbox detail with icons indicating read check mark, replied to arrow, important flag, and email thread caret"></p>
@@ -123,7 +124,7 @@
 <h3 id="accessibility-vs-complexity">Accessibility vs. Complexity</h3>
 <p>Accessibility inevitably adds some amount of complexity to the UI, but great care should be taken to find the most efficient and maintainable solution.</p>
 <h4 id="unnecessary-complexity-">Unnecessary Complexity?</h4>
-<p>Each of the 14 ID&#39;s listed above corresponds to a unique DOM element, whose purpose is solely to hold content for use by <code>aria-labelledby</code>. None of these elements are used for the visually displayed content  - all referenced elements are <code>display:none;</code>.  This specific implementation adds hundreds of elements to the page, bloating the DOM and causing potentially significant performance issues. Minimizing the number of DOM nodes is a fundamental web performance optimization best practice.</p>
+<p>Each of the 14 ID&#39;s listed above corresponds to a unique DOM element, whose purpose is solely to hold content for use by <code>aria-labelledby</code>. None of these elements are used for the visually displayed content  - all referenced elements are <code>display:none;</code>. This specific implementation adds hundreds of elements to the page and requires the creation of hundreds of unique ID&#39;s. Both of these add up to code bloat(and potential performance issues) and overly complex and inefficeint code. Minimizing the number of DOM nodes is a core web performance optimization best practice.</p>
 <p>From my personal accessibility rule book:</p>
 <blockquote>
 <p>Do not compromise code performance, simplicity and maintainability to achieve accessibility.</p>
@@ -133,9 +134,9 @@
 <p>Example:</p>
 <pre><code>&lt;button aria-label=&quot;Conversation Collapsed, Draft in conversation, From Patrick Fox, To Patrick Fox, Flagged item Active, Subject Breakfast Tacos in the kitchen, Last message 9:43p. Replied, Get &#39;em while they&#39;re hot!&quot; ...&gt;...&lt;/button&gt;
 </code></pre><p><img src="https://lh3.googleusercontent.com/-su2vJUNNDd4/VW4Miqz-rdI/AAAAAAAACuI/2nZGsrX-eg0/s0/owa-email-spoken.png" alt="VoiceOver console showing the spoken summary:  Conversation Collapsed, Draft in conversation, From Patrick Fox, To Patrick Fox, Flagged item Active, Subject Breakfast Tacos in the kitchen, Last message 9:43p. Replied, Get &#39;em while they&#39;re hot!"></p>
-<p>Using <code>aria-label</code> allows us to forgo the creation and management of hundreds of unique ID&#39;s and hidden content and provides a far simpler solution that accomplishes thex same goal.</p>
+<p>For this scenario, using <code>aria-label</code> vs. <code>aria-labelledby</code> provides a far simpler approach but accomplishes the same goal.</p>
 <h3 id="summary">Summary</h3>
-<p><code>aria-labelledby</code> provides a powerful means to associate multiple pieces of visible content with another UI element. In this way, <code>aria-labelledby</code> enable other UI elements to speak for the labelled element.</p>
+<p><code>aria-labelledby</code> provides a powerful means to associate multiple pieces of visible content with another UI element. In this way, <code>aria-labelledby</code> enables other UI elements to speak for the labelled element.</p>
 <blockquote>
 <h4 id="__aria-labelledby-best-practices__"><strong>Aria-Labelledby Best Practices</strong></h4>
 <ul>

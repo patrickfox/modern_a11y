@@ -1,6 +1,7 @@
 ---
 title: Date Picker Example
 filename: acessible-date-picker
+author: 'Patrick Fox'
 pubdate: 20150104
 draft: true
 ---

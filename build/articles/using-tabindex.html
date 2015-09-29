@@ -28,7 +28,29 @@
 </tr>
 </tbody>
 </table>
+<p>Tabindex gives developers a lot of flexibility and control over what is and isn&#39;t focusable, and how those elements can be focused. Unchecked or ad hoc use of tabindex can cause issues, though, so great care should be taken with its use.</p>
+<h3 id="voiceover-extra-text-issue">VoiceOver Extra Text Issue</h3>
+<p>One issue in VoiceOver illustrates how the use of tabindex can lead to unintended issues. </p>
+<p>Using tabindex=&quot;0&quot; on container elements that contain natively focusable child elements causes all of the text in the container to be read vs. just the link text.</p>
+<p>An example:</p>
+<pre><code class="lang-html">&lt;div tabindex=&quot;0&quot;&gt;
+    &lt;h3&gt;Section Heading&lt;/h3&gt;
+    &lt;p&gt;Some text describing the purpose of this section.&lt;/a&gt;
+    &lt;a href=&quot;#&quot;&gt;Read more about this on some other page&lt;/a&gt;
+&lt;/div&gt;
+</code></pre>
+<p>In VoiceOver (VO), interacting with the anchor above will 1) read the anchor text and 2) read <strong>all</strong> of the content inside the <code>div(tabindex=0)</code>. </p>
+<p>Expected VO output:</p>
+<blockquote>
+<p>Read more about this on some other page link</p>
+</blockquote>
+<p>Actual VO output:</p>
+<blockquote>
+<p>Read more about this on some other page Section Heading Some text describing the purpose of this section. link</p>
+</blockquote>
+<p><a href="http://jsfiddle.net/pfox/ujf6j93c/" target="fiddle">See this JSFiddle for a working example</a></p>
 <h3 id="general-rules">General Rules</h3>
+<p>Some best practices to keep in mind:</p>
 <ul>
 <li>DO NOT use tab index on elements that are not meant to be actionable  - e.g. a heading or div with tabindex</li>
 <li>DO use natively focusable elements (buttons, links) instead of using less semantic elements w/tabindex</li>
@@ -40,7 +62,7 @@
 <h3 id="overdoing-it">Overdoing It</h3>
 <p>A great example of overdoing it can be found on AmericanExpress.com. If you have an Amex account, log in and check out the home page using a screen reader. Start tabbing and you&#39;ll see that many things that are not actionable(headings, paragraphs, etc.) are focusable. A DOM query shows 154 elements with tabindex.</p>
 <p>When an focusable element receives focus, a screen reader will read its contents aloud. The developers intentions are good(albeit misinformed), as they are attempting to improve the keyboard accessibility of the page by making important copy(heaings, paragraphs, summaries) focusable.</p>
-<p><img src="/img/amex.jpg" alt="A screen shot of the American Express web site showing 154 instances of tabidex in the DOM"></p>
+<p><img src="/img/amex.jpg" alt="A screen shot of the American Express web site showing 154 instances of tabindex in the DOM"></p>
 <p>A few problems with this approach:</p>
 <ul>
 <li>Tabbable elements should be actionable(e.g. for making a selection or taking an action); making non-interactive elements tabbable may be confusing to users.</li>

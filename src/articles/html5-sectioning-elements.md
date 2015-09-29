@@ -2,6 +2,7 @@
 title: HTML5 Sectioning Elements
 filename: html5-sectioning-elements
 pubdate: 20150131
+author: 'Patrick Fox'
 draft: true
 ---
 

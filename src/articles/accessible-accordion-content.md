@@ -1,6 +1,7 @@
 ---
 title: Accessible Accordion Content
 filename: accessible-accordion-content
+author: 'Patrick Fox'
 pubdate: 20150103
 draft: true
 ---

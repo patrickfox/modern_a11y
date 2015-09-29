@@ -1,6 +1,7 @@
 ---
 title: Accessible Carousels
 filename: accessible-carousels
+author: 'Patrick Fox'
 pubdate: 20150104
 draft: true
 ---

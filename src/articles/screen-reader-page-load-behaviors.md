@@ -1,7 +1,9 @@
 ---
 title: Screen Reader Page Load Behaviors
 filename: screen-reader-page-load-behaviors
+author: 'Patrick Fox'
 pubdate: 20150103
+summary: 'In an effort to better understand how screen readers communicate page load, I spent some time documenting how various screen reader and browser combinations report that a new page has loaded.'
 ---
 
 <h2 data-page-title="Screen Reader Page Load Behaviors">Screen Reader Page Load Behaviors</h2>

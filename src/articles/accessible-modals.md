@@ -2,6 +2,7 @@
 title: Accessible Modals
 filename: accessible-modals
 pubdate: 20150131
+author: 'Patrick Fox'
 draft: true
 ---
 

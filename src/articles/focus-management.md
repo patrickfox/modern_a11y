@@ -2,6 +2,7 @@
 title: Spoken help text for complex UI components
 filename: help-text-for-complex-ui
 pubdate: 20150131
+author: 'Patrick Fox'
 draft: true
 ---
 

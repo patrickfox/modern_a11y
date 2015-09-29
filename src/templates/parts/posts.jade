@@ -3,9 +3,9 @@ include mixins
 	each val in locals
 		unless val.draft
 			article
-				+pubdate(val.pubdate)
+				+pubdate(val)
 				a.title(href="#/blog/#{val.filename}.html") #{val.title}
-				span.author.pfox by Patrick Fox
-				.summary This is a summary of the article/post.
+				span.author.pfox by #{val.author}
+				+summary(val)
 				a.readmore(href="#/blog/#" aria-label="Read full post for #{val.title}") Read More
 
