@@ -15,14 +15,14 @@
 <li>draft indicator</li>
 </ul>
 <p>Navigating through and understanding all of this information is potentially cumbersome and presents a significant usability challenge for users of any ability.</p>
-<h3 id="visual-vs-spoken-summary">Visual vs. Spoken Summary</h3>
+<p>###Visual vs. Spoken Summary</p>
 <p>Visually, all of the pertinent information is represented in a convenient, efficient manner that allows for quick understanding of each email and email thread&#39;s purpose.</p>
 <p><img src="https://lh3.googleusercontent.com/-48J2SEjvw_8/VW2_CF-YxzI/AAAAAAAACts/U-5IgDe9-x4/s0/owa-email-inbox.png" alt="Outlook Inbox detail with icons indicating read check mark, replied to arrow, important flag, and email thread caret"></p>
 <p>The sender, subject, timestamp and summary of the email body are prominently displayed, along with icons to indicate priority, replies, drafts, attachments, etc.</p>
 <p>For screen reader users, navigating through all of these elements is easily cumbersome and inefficient. One solution is to summarize the content for each inbox item in a consistent and understandable format. By adding <code>aria-labelledby</code> to an element, an efficient summary is created using other content in the page, thus negating the need to navigate through each child element. </p>
-<h4 id="how-aria-labelledby-works">How Aria-Labelledby works</h4>
+<p>####How Aria-Labelledby works</p>
 <p><code>aria-labelledby</code> works by referencing the ID&#39;s of one or more DOM elements. Each referenced element&#39;s content is spoken in the order as specified in the ID list. In this way, <code>aria-labelledby</code> attribute allows developers to specify a pattern from which a sequence of content is spoken, and thus curate to efficient and accessible spoken summaries.</p>
-<h3 id="example-email">Example Email</h3>
+<p>###Example Email</p>
 <p>The HTML markup shown below is the outer container for an individual email item. the <code>aria-labelledby</code> attribute references 14 ID&#39;s. </p>
 <p><img src="https://lh3.googleusercontent.com/nUd9RRaQVT9djehDL1PxOx4ubSvWev7ulVDZClQ7xf0=s0" alt="HTML code for an Outlook email item showing a div element and its aria-labelledby attribute with 14 IDs"></p>
 <p>The following table shows each referenced element ID, it&#39;s corresponding content and any icons or other visual translations.</p>
@@ -107,11 +107,11 @@
 </tr>
 </tbody>
 </table>
-<h4 id="commas">Commas</h4>
-<p>By adding commas to the text, screen readers will add friendly pauses, significantly improving the spoken experience.</p>
-<h3 id="spoken-helper-text">Spoken Helper Text</h3>
-<p>Additional label text to make the summary more understandable as a spoken message was added. For example, &quot;From&quot; is added to the sender copy, which reads as &quot;From Patrick Fox&quot;.</p>
-<h4 id="the-end-result">The End Result</h4>
+<p>####Commas
+By adding commas to the text, screen readers will add friendly pauses, significantly improving the spoken experience.</p>
+<p>###Spoken Helper Text
+Additional label text to make the summary more understandable as a spoken message was added. For example, &quot;From&quot; is added to the sender copy, which reads as &quot;From Patrick Fox&quot;.</p>
+<p>####The End Result</p>
 <p>Upon navigating to this email item, the screen reader will announce the following:</p>
 <blockquote>
 <p>Conversation Collapsed, Draft in conversation, From Patrick Fox, To Patrick Fox, Flagged item Active, Subject Breakfast Tacos in the kitchen, Last message 9:43p. Replied, Get &#39;em while they&#39;re hot!</p>
@@ -121,24 +121,24 @@
 <p>Draft Patrick Fox Breakfast tacos in the kitchen 9:43p Get&#39; em while they&#39;re hot, son!</p>
 </blockquote>
 <hr>
-<h3 id="accessibility-vs-complexity">Accessibility vs. Complexity</h3>
+<p>###Accessibility vs. Complexity</p>
 <p>Accessibility inevitably adds some amount of complexity to the UI, but great care should be taken to find the most efficient and maintainable solution.</p>
-<h4 id="unnecessary-complexity-">Unnecessary Complexity?</h4>
+<p>####Unnecessary Complexity?</p>
 <p>Each of the 14 ID&#39;s listed above corresponds to a unique DOM element, whose purpose is solely to hold content for use by <code>aria-labelledby</code>. None of these elements are used for the visually displayed content  - all referenced elements are <code>display:none;</code>. This specific implementation adds hundreds of elements to the page and requires the creation of hundreds of unique ID&#39;s. Both of these add up to code bloat(and potential performance issues) and overly complex and inefficeint code. Minimizing the number of DOM nodes is a core web performance optimization best practice.</p>
 <p>From my personal accessibility rule book:</p>
 <blockquote>
 <p>Do not compromise code performance, simplicity and maintainability to achieve accessibility.</p>
 </blockquote>
-<h4 id="a-better-approach-aria-label">A Better Approach: Aria-Label</h4>
+<p>####A Better Approach: Aria-Label</p>
 <p>Even though the point of this article is to demonstrate the awesomeness of <code>aria-labelledby</code>, a far more elegant implementation that provides the same experience would be to create the same summary and to use <code>aria-label</code> instead. <code>aria-label</code> provides a similar means of labeling UI elements, but takes a static string of text vs. a sequence of ID&#39;s.</p>
 <p>Example:</p>
 <pre><code>&lt;button aria-label=&quot;Conversation Collapsed, Draft in conversation, From Patrick Fox, To Patrick Fox, Flagged item Active, Subject Breakfast Tacos in the kitchen, Last message 9:43p. Replied, Get &#39;em while they&#39;re hot!&quot; ...&gt;...&lt;/button&gt;
 </code></pre><p><img src="https://lh3.googleusercontent.com/-su2vJUNNDd4/VW4Miqz-rdI/AAAAAAAACuI/2nZGsrX-eg0/s0/owa-email-spoken.png" alt="VoiceOver console showing the spoken summary:  Conversation Collapsed, Draft in conversation, From Patrick Fox, To Patrick Fox, Flagged item Active, Subject Breakfast Tacos in the kitchen, Last message 9:43p. Replied, Get &#39;em while they&#39;re hot!"></p>
 <p>For this scenario, using <code>aria-label</code> vs. <code>aria-labelledby</code> provides a far simpler approach but accomplishes the same goal.</p>
-<h3 id="summary">Summary</h3>
+<p>###Summary</p>
 <p><code>aria-labelledby</code> provides a powerful means to associate multiple pieces of visible content with another UI element. In this way, <code>aria-labelledby</code> enables other UI elements to speak for the labelled element.</p>
 <blockquote>
-<h4 id="__aria-labelledby-best-practices__"><strong>Aria-Labelledby Best Practices</strong></h4>
+<p>####<strong>Aria-Labelledby Best Practices</strong></p>
 <ul>
 <li>Rely on a foundation of solid content and copy </li>
 <li>Use <code>aria-labelledby</code>, sparingly, to improve the spoken user experience of complex UI elements</li>

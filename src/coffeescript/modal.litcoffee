@@ -71,8 +71,8 @@ Each modal has the following:
 			position: ->
 				return if not @.shell?
 				@.shell.addClass('testing')
-				width = @.shell.width()
-				height = @.shell.height()
+				width = @.shell.outerWidth()
+				height = @.shell.outerHeight()
 				window_width = $(window).width()
 				window_height = $(window).height()
 				@.shell.removeClass('testing')

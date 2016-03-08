@@ -42,7 +42,6 @@
   ]);
 
   app.controller("PageCtrl", function($scope, $location, $http) {
-    $scope.$on('$viewContentLoaded', announce_view_loaded);
     $scope.$on('$viewContentLoaded', init_components);
   });
 
@@ -101,7 +100,7 @@
     open_button: '[data-opens-modal]',
     close_button: '[data-closes-modal]',
     init: function() {
-      var update_position, _self;
+      var _self, update_position;
       _self = this;
       update_position = function() {
         return _self.position();
@@ -151,7 +150,7 @@
       this.position();
     },
     close: function() {
-      var lastly, _self;
+      var _self, lastly;
       _self = this;
       lastly = function() {
         _self.modal_active = false;
@@ -169,8 +168,8 @@
         return;
       }
       this.shell.addClass('testing');
-      width = this.shell.width();
-      height = this.shell.height();
+      width = this.shell.outerWidth();
+      height = this.shell.outerHeight();
       window_width = $(window).width();
       window_height = $(window).height();
       this.shell.removeClass('testing');
@@ -196,7 +195,7 @@
       }
     },
     isolate: function(close) {
-      var handle_focusin_body, _self;
+      var _self, handle_focusin_body;
       _self = this;
       handle_focusin_body = function(e) {
         if (!$(e.target).parents('[data-modal-id]').length) {
@@ -266,7 +265,7 @@
       this.tooltip_active = true;
     },
     close: function() {
-      var lastly, _self;
+      var _self, lastly;
       _self = this;
       lastly = function() {
         return _self.tooltip_active = false;
@@ -317,7 +316,7 @@
 
 (function() {
   var DropDown,
-    __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+    bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
   DropDown = (function() {
     var array_of_keys, keys;
@@ -338,12 +337,12 @@
     function DropDown(house) {
       var guid;
       this.house = house;
-      this.check_if_menu_should_collapse = __bind(this.check_if_menu_should_collapse, this);
-      this.move_focus = __bind(this.move_focus, this);
-      this.navigate_via_keyboard = __bind(this.navigate_via_keyboard, this);
-      this.choose_menu_item = __bind(this.choose_menu_item, this);
-      this.toggle_drop_down_menu = __bind(this.toggle_drop_down_menu, this);
-      this.poll_drop_down_menu_items = __bind(this.poll_drop_down_menu_items, this);
+      this.check_if_menu_should_collapse = bind(this.check_if_menu_should_collapse, this);
+      this.move_focus = bind(this.move_focus, this);
+      this.navigate_via_keyboard = bind(this.navigate_via_keyboard, this);
+      this.choose_menu_item = bind(this.choose_menu_item, this);
+      this.toggle_drop_down_menu = bind(this.toggle_drop_down_menu, this);
+      this.poll_drop_down_menu_items = bind(this.poll_drop_down_menu_items, this);
       this.drop_down_button = $('[data-drop-down-button]', this.house);
       this.drop_down_menu = $('[data-drop-down-menu]', this.house);
       this.drop_down_elements = $('[data-drop-down-button], [data-drop-down-menu], [data-drop-down-item]', this.house);
@@ -477,7 +476,7 @@
 }).call(this);
 
 (function() {
-  var Throttlr, window_resize, _guid;
+  var Throttlr, _guid, window_resize;
 
   $.events = {
     'window_resize': 'window_resize'
@@ -510,19 +509,19 @@
       return [c, d];
     };
     $.unsubscribe = function(event_name, handler) {
-      var counter, registered_handler, _i, _len, _ref, _results;
+      var counter, i, len, ref, registered_handler, results;
       if (a[event_name]) {
         counter = 0;
-        _ref = a[event_name];
-        _results = [];
-        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-          registered_handler = _ref[_i];
+        ref = a[event_name];
+        results = [];
+        for (i = 0, len = ref.length; i < len; i++) {
+          registered_handler = ref[i];
           if (registered_handler === handler) {
             a[event_name].splice(counter, 1);
           }
-          _results.push(counter++);
+          results.push(counter++);
         }
-        return _results;
+        return results;
       }
     };
     return $.subscriptions = a;
@@ -536,7 +535,7 @@
       return $.publish(this.pubsub_event);
     },
     on_event: function() {
-      var self_publish_event, self_timeout, _self;
+      var _self, self_publish_event, self_timeout;
       self_timeout = this.timeout;
       _self = this;
       self_publish_event = function() {

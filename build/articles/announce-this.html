@@ -1,28 +1,28 @@
-<h1 id="announcing-content-with-aria-live-regions">Announcing content with ARIA Live Regions</h1>
-<h2 id="how-live-regions-work">How Live Regions Work</h2>
-<h2 id="best-practices">Best Practices</h2>
-<h3 id="use-sparingly-for-pertinent-messages">Use sparingly for pertinent messages</h3>
-<p>ARIA live regions provide a powerful means for announcing messages dynamically to users.</p>
+<p>#Announcing content with ARIA Live Regions</p>
+<p>##How Live Regions Work</p>
+<p>##Best Practices</p>
+<p>###Use sparingly for pertinent messages
+ARIA live regions provide a powerful means for announcing messages dynamically to users.</p>
 <ul>
 <li>Improve awareness and understanding
 Pertinent UI changes and time-sensitive updates or messages should be brought to the user&#39;s attention.</li>
 </ul>
-<h3 id="use-a-single-live-region">Use a single Live Region</h3>
+<p>###Use a single Live Region</p>
 <p>Live regions are very powerful means to announce content to users without moving their focus, but uncontrolled use can lead to added code complexity and maintenance issues.</p>
 <p>Allowing developers, especially on larger teams, to use live regions ad hoc can causes unintended issues. Managing multiple live regions in a page can create headaches. </p>
 <p>Only one live region can be heard at a time. As a best practice, use a single, common live region to speak all user messages. Any message that needs to be announced can simply be added to this common live region.</p>
-<h3 id="how-announce-works">How $.announce() works</h3>
+<p>###How $.announce() works</p>
 <p>-live region must be in the page at DOM load or very shortly thereafter
 -with dynamic views(e.g. single page apps or dynamic UI), dynamically created live regions do not work in some screen reader/browser combinations(namely VoiceOver)
 -reset live region before each message is announced
 -clear live region content after brief pause</p>
-<h4 id="queuing-messages">Queuing Messages</h4>
-<p>At this time, there is not a way to queue messages other than to use <code>aria-live=&quot;polite&quot;</code></p>
-<h2 id="live-region-support">Live Region Support</h2>
-<h2 id="announcing-content">Announcing Content</h2>
+<p>####Queuing Messages
+At this time, there is not a way to queue messages other than to use <code>aria-live=&quot;polite&quot;</code></p>
+<p>##Live Region Support</p>
+<p>##Announcing Content</p>
 <p>ARIA live regions provide a powerful means for announcing messages dynamically to users.</p>
 <ul>
 <li>Improve awareness and understanding
 Pertinent UI changes and time-sensitive updates or messages should be brought to the user&#39;s attention.</li>
 </ul>
-<h2 id="implementation-best-practices">Implementation Best Practices</h2>
+<p>##Implementation Best Practices</p>

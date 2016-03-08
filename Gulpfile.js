@@ -2,7 +2,7 @@ var gulp = require('gulp'),
 	markdown = require('gulp-markdown'),
 	wiredep = require('wiredep').stream,
 	concat = require('gulp-concat'),
-	sass = require('gulp-ruby-sass'),
+	sass = require('gulp-sass'),
 	uglify = require('gulp-uglifyjs'),
 	mincss = require('gulp-minify-css'),
 	clean = require('gulp-clean'),
@@ -109,7 +109,7 @@ gulp.task('sass', function () {
 });
 
 gulp.task('markdown', function () {
-	return gulp.src('src/articles/*.md')
+	return gulp.src('./src/articles/*.md')
 		.pipe(front_matter({property:'front_matter', remove: true}))
 		.pipe(data(function(file) {
 			json_output.push(file.front_matter);
@@ -170,7 +170,7 @@ gulp.task('run', function(cb){
 	gulp.watch('./src/sass/**/*.sass', ['sass']);
 	gulp.watch('./src/sass/**/*.scss', ['sass']);
 	gulp.watch('./src/templates/**/*.jade', ['templates']);//.on('change', function (evt) {change_event(evt);});
-	gulp.watch('./src/posts/**/*.md', ['markdown']);
+	gulp.watch('./src/articles/*.md', ['markdown']);
 	gulp.watch('./src/coffeescript/*.litcoffee', ['coffee']);
 	gulp.watch('./src/js/vendor/*.js', ['vendor_js']);
 	gulp.watch('./src/json/*.json', ['copy']);

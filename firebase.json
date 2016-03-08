@@ -1,0 +1,9 @@
+{
+  "firebase": "moderna11y",
+  "public": "build",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}

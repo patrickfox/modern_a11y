@@ -43,7 +43,7 @@
     $scope.$on('$viewContentLoaded', init_components);
   });
 
-  site_title = 'Modern Accessibility - ';
+  site_title = 'Modern Accessibility with Angular - ';
 
   init_components = function() {
     return window.carousel_mgr.init();
@@ -51,7 +51,7 @@
 
   announce_view_loaded = function() {
     var page_title, page_title_el;
-    page_title_el = $('main [data-page-title]');
+    page_title_el = $('[data-page-title]');
     if (page_title_el != null) {
       page_title = page_title_el.data('page-title') || page_title_el.html();
     } else {

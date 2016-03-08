@@ -36,7 +36,7 @@
 	]
 
 	app.controller "PageCtrl", ($scope, $location, $http) ->
-		$scope.$on '$viewContentLoaded', announce_view_loaded
+		#$scope.$on '$viewContentLoaded', announce_view_loaded
 		$scope.$on '$viewContentLoaded', init_components
 		return
 
