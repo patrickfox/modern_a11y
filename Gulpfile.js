@@ -146,6 +146,9 @@ gulp.task('copy', function() {
 
 	gulp.src('src/css/**')
 		.pipe(gulp.dest('build/css'));
+
+    gulp.src('CNAME')
+        .pipe(gulp.dest('build/'));
 });
 
 gulp.task('_build',['sass','coffee','templates','vendor_js',/*'libs',*/'copy']); //Because 'clean' is async runSequence forces sync
