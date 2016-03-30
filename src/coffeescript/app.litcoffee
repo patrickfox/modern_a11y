@@ -36,11 +36,11 @@
 	]
 
 	app.controller "PageCtrl", ($scope, $location, $http) ->
-		#$scope.$on '$viewContentLoaded', announce_view_loaded
+		$scope.$on '$viewContentLoaded', announce_view_loaded
 		$scope.$on '$viewContentLoaded', init_components
 		return
 
-	site_title = 'Modern Accessibility - '
+	site_title = 'Modern Accessibility with Angular - '
 
 	announce_view_loaded = ->
 		#return
@@ -61,7 +61,7 @@
 		page_title = site_title + page_title
 		$('title').html(page_title)
 		$('#main_content').access(true)
-		$.announce(page_title + ' page loaded', 'assertive')
+		$.announce(page_title + ' page loaded', 'polite')
 		return
 
 /*
