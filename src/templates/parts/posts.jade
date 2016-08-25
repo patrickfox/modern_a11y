@@ -1,5 +1,6 @@
 include mixins
 .articles
+	+sort_articles(locals)
 	each val in locals
 		unless val.draft
 			article

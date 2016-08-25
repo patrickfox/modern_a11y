@@ -10,7 +10,7 @@ summary: 'The Outlook Web App is a great example of a highly usable and accessib
 
 <span class="summary">The Outlook Web App is a great example of a highly usable and accessible web experience, and an __#a11ywin__.</span>
 
-Email inboxes are surely familiar to all of us: scads of information, some of it important, most of it junk or outdated information. Aside from the sheer number of email in an inbox(mine currently has over 2000), summarizing and presenting the information contained in an individual email is a formidable task alone. The information contained in a single email or email thread comprises about a dozen data points:
+Email inboxes are surely familiar to all of us: scads of information, some of it important, most of it junk or outdated information. Aside from the sheer number of email in an inbox (mine currently has over 2000), summarizing and presenting the information contained in an individual email is a formidable task alone. The information contained in a single email or email thread comprises about a dozen data points:
 - sender
 - recipient(s)
 - subject

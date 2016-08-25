@@ -1,14 +1,14 @@
 ---
-title: Accessible Popup Menus
+title: Accessible Popup/Dropdown Menus
 filename: accessible-popup-menus
 pubdate: 20150104
 author: 'Patrick Fox'
-draft: true
+draft: false
 ---
 
-<h2 data-page-title="Accessible Popup Menus">Accessible Popup Menus</h2>
+<h2 data-page-title="Accessible Popup Menus">Accessible Dropdown Menus</h2>
 
-Accessible Popup Menu example
+Accessible Dropdown Menu example
 
 <div id="event_custom">Event type</div>
 <div class="dropdownmenu" data-drop-down="">
