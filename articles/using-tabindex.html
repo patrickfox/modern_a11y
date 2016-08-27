@@ -1,0 +1,73 @@
+<h2 id="using-tabindex">Using Tabindex</h2>
+<p><strong>tl;dr:</strong> The tabindex attribute is awesome, but resist the urge to use it.</p>
+<h3 id="understanding-tabindex">Understanding Tabindex</h3>
+<p>An important aspect of web accessibility is ensuring keyboard navigation and managing the user&#39;s focus in a page. The tabindex attribute gives developers the ability to make any element focusable. A few reasons why you might want to do this:</p>
+<table>
+<thead>
+<tr>
+<th>Goal</th>
+<th>Usage</th>
+<th>Recommendation                </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Make an element tabbable so that it can receive focus via tab key navigation</td>
+<td>tabindex=&quot;0&quot;</td>
+<td>Use natively focusable elements(e.g. button, anchor) instead of tabindex=&quot;0&quot;. In some cases, it is necessary to control the keyboard accessibility of elements prgrammatically. Some widgets(e.g. custom drop down menus) call for arrow navigation to emulate native element behaviors. See <a href="http://bit.ly/roving-tabindex">http://bit.ly/roving-tabindex</a> for more details.</td>
+</tr>
+<tr>
+<td>Programmatically place focus on something in order to read it&#39;s contents or to place the user&#39;s focus in a specific place in the UI in order to manage focus</td>
+<td>tabindex=&quot;-1&quot;</td>
+<td>Use sparingly and apply tabindex using a script vs. hard coding it in markup. A useful and elegant method for placing focus on any element is the $.access() function we&#39;ve created - see <a href="http://bit.ly/access_a11y">http://bit.ly/access_a11y</a></td>
+</tr>
+<tr>
+<td>Curate a specific tab order</td>
+<td>tabindex=&quot;{1 or greater}&quot;</td>
+<td><strong>Not recommended</strong> <em>Maintaining a logical, non-natural tab order in this manner is dificult, error prone, and an anti-pattern. Don&#39;t do this!</em> How it works: lower, positive tabindex values receive focus before higher values. After this, any elements with either a tabindex of 0 or that are natively focusable with no tabindex are focusable in the order they appear in the DOM. Elements with the same tabindex will have a tab order based on their DOM order.</td>
+</tr>
+</tbody>
+</table>
+<p>Tabindex gives developers a lot of flexibility and control over what is and isn&#39;t focusable, and how those elements can be focused. Unchecked or ad hoc use of tabindex can cause issues, though, so great care should be taken with its use.</p>
+<h3 id="voiceover-extra-text-issue">VoiceOver Extra Text Issue</h3>
+<p>_Note: this issue was resolved sometime around MacOS 10.9 Mavericks. Lesson learned: sometimes adding in accessibility accomodations like tabindex, while well-meaning, have unintended consequences that hurt the overall experience.</p>
+<p>One issue in VoiceOver illustrates how the use of tabindex can lead to unintended issues. </p>
+<p>Using tabindex=&quot;0&quot; on container elements that contain natively focusable child elements causes all of the text in the container to be read vs. just the link text.</p>
+<p>An example:</p>
+<pre><code class="lang-html">&lt;div tabindex=&quot;0&quot;&gt;
+    &lt;h3&gt;Section Heading&lt;/h3&gt;
+    &lt;p&gt;Some text describing the purpose of this section.&lt;/a&gt;
+    &lt;a href=&quot;#&quot;&gt;Read more about this on some other page&lt;/a&gt;
+&lt;/div&gt;
+</code></pre>
+<p>In VoiceOver (VO), interacting with the anchor above will 1) read the anchor text and 2) read <strong>all</strong> of the content inside the <code>div(tabindex=0)</code>. </p>
+<p>Expected VO output:</p>
+<blockquote>
+<p>Read more about this on some other page link</p>
+</blockquote>
+<p>Actual VO output:</p>
+<blockquote>
+<p>Read more about this on some other page Section Heading Some text describing the purpose of this section. link</p>
+</blockquote>
+<p><a href="http://jsfiddle.net/pfox/ujf6j93c/" target="fiddle">See this JSFiddle for a working example</a></p>
+<h3 id="general-rules">General Rules</h3>
+<p>Some best practices to keep in mind:</p>
+<ul>
+<li>DO NOT use tabindex on elements that are not meant to be actionable  - e.g. a heading or div with tabindex</li>
+<li>DO use natively focusable elements (buttons, links) instead of using less semantic elements w/tabindex</li>
+<li>DO NOT ever use tabindex values greater than 0</li>
+<li>DO rely on the natural DOM order to establish the focus order of focusable elements like buttons, links and form fields</li>
+<li>DO use tabindex sparingly; otherwise you may end up with a maintenance nightmare</li>
+<li>DO refrain from using tabindex in an ad hoc manner or hardcoded in HTML; instead, use a script to manage the placement and value of tabindex dynamically</li>
+</ul>
+<h3 id="overdoing-it">Overdoing It</h3>
+<p><em>Note: this version of Amex&#39;s site no longer exists, adn teh problem has been remedied, somewhat.</em></p>
+<p>A great example of overdoing it can be found on AmericanExpress.com. If you have an Amex account, log in and check out the home page using a screen reader. Start tabbing and you&#39;ll see that many things that are not actionable(headings, paragraphs, etc.) are focusable. A DOM query shows 154 elements with tabindex.</p>
+<p>When an focusable element receives focus, a screen reader will read its contents aloud. The developers intentions are good (albeit misinformed), as they are attempting to improve the keyboard accessibility of the page by making important copy (headings, paragraphs, summaries) focusable.</p>
+<p><img src="/img/amex.jpg" alt="A screen shot of the American Express web site showing 154 instances of tabindex in the DOM"></p>
+<p>A few problems with this approach:</p>
+<ul>
+<li>Tabbable elements should be actionable (e.g. for making a selection or taking an action); making non-interactive elements tabbable may be confusing to users.</li>
+<li>All page elements are already navigable using a screen reader&#39;s built-in virtual cursor navigation. These tools allow users to navigate from element to element, or by element type. The use of tabindex in this way is completely unnecessary.</li>
+<li>All of these tabindex attributes bloat/clutter the DOM, and have the potential to create other issues</li>
+</ul>
