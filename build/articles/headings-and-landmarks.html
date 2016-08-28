@@ -1,0 +1,94 @@
+<h2 id="headings-and-landmarks">Headings and Landmarks</h2>
+<p>A fundamental aspect of web accessibility is the ability to efficiently identify the purpose, functionality and structure of the content on a web page. Proper design and implementation of headings and ARIA landmark regions ensures that all users can more efficiently understand, navigate and accomplish what they need to do.</p>
+<h3 id="improving-navigation-and-discoverability">Improving Navigation and Discoverability</h3>
+<p>The goal of headings and landmarks is to establish structural hierarchy for page content and UI, with the goal of improving a user&#39;s ability to discover page content, functionality and overall purpose, and to improve navigation for screen reader users. Screen readers provide tools to discover and navigate page content via landmarks and headings. Just as sighted users can scan a page by identifying page sections and headings, screen readers provide summaries of headings and landmarks on a page, and provide vision-impaired users the ability to virtually scan and move focus to page content via landmark regions and headings.</p>
+<p>##3 Landmarks</p>
+<p>The goal of landmarks is to designate the key sections of the UI and to improve screen reader navigation. Properly implemented, landmarks enable users to more easily find and navigate to the important sections of the page UI. At a minimum, each page or view should have 1 <code>banner</code>, <code>main</code> and <code>contentinfo</code> section. Optionally, pertinent navigation, site search and/or complementary sections should be designated.</p>
+<p>Landmarks are coded by using a combination of an appropriate/semantic HTML element (often an HTML5 sectioning element) with the role attribute and relevant landmark value.</p>
+<table>
+<thead>
+<tr>
+<th>UI Purpose</th>
+<th>Landmark Role w/Sectioning Element</th>
+<th>Usage</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Page header</td>
+<td><code>&lt;header role=&quot;banner&quot;&gt;</code></td>
+<td><em>required</em>, 1 per page</td>
+<td><em>A region that contains mostly site-oriented content, rather than page-specific content.</em></td>
+</tr>
+<tr>
+<td>Main content</td>
+<td><code>&lt;main role=&quot;main&quot;&gt;</code></td>
+<td><em>required</em>, 1 per page</td>
+<td><em>The main content of a document.</em></td>
+</tr>
+<tr>
+<td>Footer</td>
+<td><code>&lt;footer role=&quot;contentinfo&quot;&gt;</code></td>
+<td><em>required</em>, 1 per page</td>
+<td><em>A large perceivable region that contains information about the parent document.</em></td>
+</tr>
+<tr>
+<td>Complementary content</td>
+<td><code>&lt;section role=&quot;complementary&quot;&gt;</code></td>
+<td>optional, 0 or more per page, use with label</td>
+<td><em>A supporting section of the document, designed to be complementary to the main content at a similar level in the DOM hierarchy, but remains meaningful when separated from the main content.</em></td>
+</tr>
+<tr>
+<td>Navigation group</td>
+<td><code>&lt;nav role=&quot;navigation&quot;&gt;</code></td>
+<td>optional, 0 or more per page, use to designate a group of related navigation links, use with label</td>
+<td><em>A collection of navigational elements (usually links) for navigating the document or related documents.</em></td>
+</tr>
+<tr>
+<td>Site Search</td>
+<td><code>&lt;div role=&quot;search&quot;&gt;</code></td>
+<td>optional, 0 or more per page</td>
+<td><em>A landmark region that contains a collection of items and objects that, as a whole, combine to create a search facility</em></td>
+</tr>
+</tbody>
+</table>
+<p>UX designers should determine the pertinent sections of content, assign landmark roles to those sections and capture this detail the wireframe documentation. It is important to reserve landmarks usage for the most important, top-level sections of the UI.</p>
+<h4 id="labeled-landmarks">Labeled Landmarks</h4>
+<p>Generic landmarks with one or more instances present on a page, like navigation or complementary regions, should use labels to provide better descriptions and to differentiate their purpose. For example, using <code>role=&quot;navigation&quot;</code> on an element will make it discoverable as a &quot;navigation landmark&quot; but if multiple navigation regions exist on a page, they will all be announced as &quot;navigation landmark&quot; making their specific purpose unknown. Using either the <code>aria-label</code> or <code>aria-labelledby</code> attribute, generic landmarks should be labeled to differentiate their purpose. E.g. &quot;Site navigation landmark&quot;, &quot;Manage account navigation landmark&quot; or &quot;Search Results navigation landmark&quot;.</p>
+<h4 id="landmark-best-practices">Landmark Best Practices</h4>
+<h5 id="design">Design</h5>
+<ul>
+<li><strong>Document landmark use in wireframe docs</strong> - Wireframes must clearly outline the strategy for consistent and proper implementation of landmarks across an application.</li>
+<li><strong>Use landmarks sparingly</strong> - Ensure that only the most important section of the UI are designated as landmarks. Overuse of landmarks dilutes their purpose and meaning.</li>
+<li><strong>Use landmarks to designate the top-level page sections</strong> - A page must contain at least a <code>header</code>, <code>main</code> and <code>contentinfo</code>, with optional <code>navigation</code>,<code>search</code>, and <code>complementary</code> sections. </li>
+<li><strong>Use headings inside of landmarks to speak for its purpose</strong> - Multiple landmarks of the same type (e.g. <code>navigation</code> and <code>complementary</code> sections) should be differentiated using <code>aria-label</code> or <code>aria-labelledby</code>.</li>
+<li><strong>Use landmarks consistently</strong> - Across an application/web site, UX designers must ensure that landmarks are used in a consistent and predictable manner.</li>
+<li><strong>Ensure that all page content resides in a landmark</strong> - Avoid orphaned content that does not live within a landmark region, and thus is not discoverable via landmark navigation.</li>
+</ul>
+<h5 id="development">Development</h5>
+<ul>
+<li><strong>Use landmarks in conjunction with an appropriate HTML5 sectioning element</strong> - HTML5 sectioning elements are available to provide more semantic structure to your markup, but their interpretation as landmark regions by themselves is not fully nor consistently supported by screen readers. As a best practice, use both HTML5 sectioning elements and landmark roles together to ensure future compatibility as screen reader and browser support improves.</li>
+</ul>
+<h3 id="headings">Headings</h3>
+<p>Headings provide both a visual and accessible means for users to identify content hierarchy and to navigate page content by jumping to the various headings via screen readers.</p>
+<h4 id="heading-best-practices">Heading Best Practices</h4>
+<h5 id="design">Design</h5>
+<ul>
+<li><strong>Document heading use in wires and copy decks</strong> - Wireframes and copy decks must clearly outline the strategy for consistent and proper implementation of headings across an application.</li>
+<li><strong>Use headings sparingly</strong> - Headings should enable users to identify the most important content sections and the hierarchy of content on a page. Overuse of headings dilutes their </li>
+<li><strong>Use headings consistently</strong> - Heading levels should represent sections of equal importance equally across a site. For example, if an H2 is used as an article title on one page, it should be used consistently</li>
+<li><strong>Use succinct and meaningful text</strong> - A user should be able to determine the purpose of the content it represents.</li>
+<li><strong>Use proper heading levels to define content hierarchy</strong> - Use heading levels to create relationships and hierarchy. For example, an H3 implies that it has a parent H2 and that the content is a subtopic of the parent H2.</li>
+<li><strong>Avoid skipping heading levels</strong> - Heading order can be used to indicate content hierarchy. Skipping levels - e.g. having an H2 followed by an H4 vs. and H3 - may cause confusion, and thus heading levels should never increase by more than 1:<ul>
+<li><strong><em>Good</em></strong>: H2 &gt; H3, H1 &gt; H2, H4 &gt; H2 (<em>decreases</em> by 2, which is fine)</li>
+<li><strong><em>Avoid</em></strong>: H2 &gt; H4, H1 &gt; H4</li>
+</ul>
+</li>
+<li><strong>Use only one H1 per page/view</strong> - An H1 is the most important heading in the page. There should only be one available at any time and it should convey the purpose of the current page. E.g. &quot;Account Dashboard&quot;</li>
+<li><strong>Modal headings should start at H1</strong> - When a modal dialog is active, the modal should contain an H1 the summarizes the purpose of the dialog. The main page content and H1 should be hidden from the screen reader.</li>
+</ul>
+<h5 id="development">Development</h5>
+<ul>
+<li><strong>Avoid mixing other elements in headings</strong> - Keep heading purpose simple and clear. Headings should be plain text - avoid adding unrelated markup to headings or using headings as links or including linked or other non-heading text within a heading.</li>
+</ul>
