@@ -6,7 +6,7 @@ pubdate: 20150702
 summary: 'An important aspect of web accessibility is ensuring keyboard navigation and managing the users focus in a page. The tabindex attribute gives developers the ability to make any element focusable.'
 ---
 
-## Using Tabindex
+## (Not) Using Tabindex
 
 __tl;dr:__ The tabindex attribute is awesome, but resist the urge to use it.
 
@@ -27,6 +27,8 @@ Tabindex gives developers a lot of flexibility and control over what is and isn'
 
 
 ### VoiceOver Extra Text Issue
+
+_Note: this issue was resolved sometime around MacOS 10.9 Mavericks. Lesson learned: sometimes adding in accessibility accomodations like tabindex, while well-meaning, have unintended consequences that hurt the overall experience.
 
 One issue in VoiceOver illustrates how the use of tabindex can lead to unintended issues. 
 
@@ -61,7 +63,7 @@ Actual VO output:
 Some best practices to keep in mind:
 
 
-- DO NOT use tab index on elements that are not meant to be actionable  - e.g. a heading or div with tabindex
+- DO NOT use tabindex on elements that are not meant to be actionable  - e.g. a heading or div with tabindex
 - DO use natively focusable elements (buttons, links) instead of using less semantic elements w/tabindex
 - DO NOT ever use tabindex values greater than 0
 - DO rely on the natural DOM order to establish the focus order of focusable elements like buttons, links and form fields
@@ -71,9 +73,11 @@ Some best practices to keep in mind:
 
 ### Overdoing It
 
+_Note: this version of Amex's site no longer exists, adn teh problem has been remedied, somewhat._
+
 A great example of overdoing it can be found on AmericanExpress.com. If you have an Amex account, log in and check out the home page using a screen reader. Start tabbing and you'll see that many things that are not actionable(headings, paragraphs, etc.) are focusable. A DOM query shows 154 elements with tabindex.
 
-When an focusable element receives focus, a screen reader will read its contents aloud. The developers intentions are good(albeit misinformed), as they are attempting to improve the keyboard accessibility of the page by making important copy(heaings, paragraphs, summaries) focusable.
+When an focusable element receives focus, a screen reader will read its contents aloud. The developers intentions are good (albeit misinformed), as they are attempting to improve the keyboard accessibility of the page by making important copy (headings, paragraphs, summaries) focusable.
 
 
 ![A screen shot of the American Express web site showing 154 instances of tabindex in the DOM](/img/amex.jpg)
@@ -81,7 +85,7 @@ When an focusable element receives focus, a screen reader will read its contents
 
 A few problems with this approach:
 
-- Tabbable elements should be actionable(e.g. for making a selection or taking an action); making non-interactive elements tabbable may be confusing to users.
+- Tabbable elements should be actionable (e.g. for making a selection or taking an action); making non-interactive elements tabbable may be confusing to users.
 - All page elements are already navigable using a screen reader's built-in virtual cursor navigation. These tools allow users to navigate from element to element, or by element type. The use of tabindex in this way is completely unnecessary.
 - All of these tabindex attributes bloat/clutter the DOM, and have the potential to create other issues
 
