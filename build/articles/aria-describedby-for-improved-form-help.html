@@ -1,0 +1,44 @@
+<h2 id="using-aria-describedby-for-improved-form-help">Using aria-describedby for improved form help</h2>
+<p>In response to a Jeremy Keith article on [using aria-describedby for text input helper text] (<a href="https://adactio.com/journal/11109">https://adactio.com/journal/11109</a>).</p>
+<p>The question: is it better to include helper text in the field <code>&lt;label&gt;</code> or to use <code>aria-describedby</code>.</p>
+<p>The short answer is: it&#39;s complicated. Let&#39;s look at the options.</p>
+<iframe height='350' scrolling='no' src='//codepen.io/adactio/embed/jAXyxP/?height=350&theme-id=0&default-tab=html,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='http://codepen.io/adactio/pen/jAXyxP/'>Form field accessibility question</a> by Jeremy Keith (<a href='http://codepen.io/adactio'>@adactio</a>) on <a href='http://codepen.io'>CodePen</a>.
+</iframe>
+
+<p><strong>Helper text in Label</strong></p>
+<p>This option adds the helper text into the label. The user hears a single sentence: &quot;Email must include the @ symbol&quot; before hearing the indication that this is a text field: &quot;edit text&quot;</p>
+<p><strong>Helper text via aria-describedby</strong></p>
+<p>This option uses the aria-describedby attribute to associate the input field with the helper text. The user hears the label (&quot;Email&quot;), text field (&quot;edit text&quot;), and then the helper text. But, VoiceOver has a strange way of handling aria-describedby, wherein it does not read the helper text until after a pause and some instructions, and then says &quot;The help text is: must include the @ symbol&quot;.</p>
+<p><strong>Winner: <code>aria-describedby</code></strong> (VO could be better, though...)</p>
+<h3 id="placeholder-support-varies">Placeholder Support Varies</h3>
+<p>While we&#39;re at it... </p>
+<p>The examples in Jeremy&#39;s post use the placeholder attribute to add examples, but this arguably adds more problems than it solves.</p>
+<h4 id="nvda-and-jaws-ingnore-placeholder-text">NVDA and JAWS Ingnore Placeholder Text</h4>
+<p>NVDA and JAWS ignore placeholder text, which is ok in this case because we already have helper text. If the placeholder text is truly important, though, this would be a problem.</p>
+<h4 id="voiceover-is-confusing">VoiceOver Is Confusing</h4>
+<p>VoiceOver reads placeholder text as if it were the field value, which is super confusing.</p>
+<blockquote>
+<p>&quot;e.g. you@example.com Insertion at beginning of text. Email, edit text&quot;</p>
+<p>(pause, followed by verbose explanation, and THEN the helper text)</p>
+<p>&quot;You are currently on a text field, inside of HTML content. To enter text in this field, type. , The help tag is: must include the @symbol&quot;</p>
+</blockquote>
+<p>Placeholder text is also problematic for a few other reasons:</p>
+<ul>
+<li><strong>Styling</strong> - placeholder text is not easy to style or requires browser specific styles syntax</li>
+<li><strong>Color Contrast</strong> - placeholder text generally needs to be lighter to be recognized as being placeholder text versus a user-specified value, but lighter text colors often fail the minimum color contrast requirements</li>
+<li><strong>Flexibility</strong> - the length of placeholder text can vary depending on the translation, and may extend beyond the width of the input field</li>
+</ul>
+<h4 id="best-approach">Best Approach</h4>
+<iframe height='500' scrolling='no' src='//codepen.io/pfox/embed/BLBdGJ/?height=500&theme-id=0&default-tab=html,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='http://codepen.io/pfox/pen/BLBdGJ/'>Form field accessibility question</a> by Patrick Fox (<a href='http://codepen.io/pfox'>@pfox</a>) on <a href='http://codepen.io'>CodePen</a>.
+</iframe>
+
+
+<p>A better solution would be to forgo using the placeholder attribute and to make a <em>single</em> helper statement, like:</p>
+<blockquote>
+<p>&quot;Email address must include the @ symbol, For example: you@domain.com&quot;</p>
+</blockquote>
+<p>In summary:</p>
+<ul>
+<li>use <code>aria-describedby</code> to associate helper/formatting/instructional text to form fields </li>
+<li>don&#39;t use the <code>placeholder</code> attribute</li>
+</ul>
