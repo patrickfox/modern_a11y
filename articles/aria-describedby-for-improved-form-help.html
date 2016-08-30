@@ -6,14 +6,14 @@
 </iframe>
 
 <p><strong>Helper text in Label</strong></p>
-<p>This option adds the helper text into the label. The user hears a single sentence: &quot;Email must include the @ symbol&quot; before hearing the indication that this is a text field: &quot;edit text&quot;</p>
+<p>This option adds the helper text into the label and positions the text below the field. The user hears a single sentence: &quot;Email must include the @ symbol&quot; before hearing the indication that this is a text field: &quot;edit text&quot;</p>
 <p><strong>Helper text via aria-describedby</strong></p>
 <p>This option uses the aria-describedby attribute to associate the input field with the helper text. The user hears the label (&quot;Email&quot;), text field (&quot;edit text&quot;), and then the helper text. But, VoiceOver has a strange way of handling aria-describedby, wherein it does not read the helper text until after a pause and some instructions, and then says &quot;The help text is: must include the @ symbol&quot;.</p>
-<p><strong>Winner: <code>aria-describedby</code></strong> (VO could be better, though...)</p>
+<p><strong>Winner: <code>aria-describedby</code></strong> (though, VO could be better...)</p>
 <h3 id="placeholder-support-varies">Placeholder Support Varies</h3>
 <p>While we&#39;re at it... </p>
 <p>The examples in Jeremy&#39;s post use the placeholder attribute to add examples, but this arguably adds more problems than it solves.</p>
-<h4 id="nvda-and-jaws-ingnore-placeholder-text">NVDA and JAWS Ingnore Placeholder Text</h4>
+<h4 id="nvda-and-jaws-ignore-placeholder-text">NVDA and JAWS Ignore Placeholder Text</h4>
 <p>NVDA and JAWS ignore placeholder text, which is ok in this case because we already have helper text. If the placeholder text is truly important, though, this would be a problem.</p>
 <h4 id="voiceover-is-confusing">VoiceOver Is Confusing</h4>
 <p>VoiceOver reads placeholder text as if it were the field value, which is super confusing.</p>
